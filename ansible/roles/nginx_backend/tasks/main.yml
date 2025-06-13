@@ -1,0 +1,31 @@
+- name: Install nginx
+  become: true
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Ensure nginx is running
+  become: true
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Ensure /var/www/html exists
+  become: true
+  file:
+    path: /var/www/html
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+
+- name: Deploy custom index.html
+  become: true
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+    mode: '0644'

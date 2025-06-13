@@ -1,0 +1,15 @@
+---
+- name: Setup all VMs
+  hosts: linux
+  roles:
+    - default_packages
+
+- name: Setup Nginx backend
+  hosts: nginx_backend
+  roles:
+    - nginx_backend
+
+- name: Setup Nginx proxy
+  hosts: nginx_proxy
+  roles:
+    - nginx_proxy

@@ -1,0 +1,15 @@
+---
+linux:
+  children:
+    nginx_proxy:
+      hosts:
+        vm-proxy:
+          ansible_host: 51.250.65.185
+    nginx_backend:
+      hosts:
+        vm-backend:
+          ansible_host: 51.250.11.208
+  vars:
+    ansible_user: "mda"
+    ansible_ssh_private_key_file: "/home/mda/.ssh/id_ed25519"
+    ansible_become: true
